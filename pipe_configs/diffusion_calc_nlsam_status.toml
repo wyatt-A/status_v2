@@ -1,0 +1,43 @@
+label = 'diffusion_calc_nlsam'
+
+preferred_computer = ["delos"]
+
+[[stages]]
+label = 'co_reg'
+preferred_computer = ["civmcluster1"]
+completion_file_pattern = 'results/co_reg.*headfile'
+directory_pattern = '${BIGGUS_DISKUS}/${PREFIX}${SEP}${BASE}NLSAM${SEP}${PROGRAM}${SEP}${SUFFIX}-results'
+signature_type = 'ManyToOne'
+
+[[stages]]
+label = 'make_4d'
+preferred_computer = ["civmcluster1"]
+completion_file_pattern = 'results/nii4D_[^_]+nii$'
+directory_pattern = '${BIGGUS_DISKUS}/${PREFIX}${SEP}${BASE}NLSAM${SEP}${PROGRAM}${SEP}${SUFFIX}-results'
+signature_type = 'ManyToOne'
+
+[[stages]]
+label = 'make_4d_nlsam'
+preferred_computer = ["civmcluster1"]
+completion_file_pattern = 'results/nii4D_[^_]+?NLSAM.nii$'
+directory_pattern = '${BIGGUS_DISKUS}/${PREFIX}${SEP}${BASE}NLSAM${SEP}${PROGRAM}${SEP}${SUFFIX}-results'
+signature_type = 'ManyToOne'
+
+[[stages]]
+label = 'dsi_studio_source'
+completion_file_pattern = 'work/.*src(.gz)?$'
+directory_pattern = '${BIGGUS_DISKUS}/${PREFIX}${SEP}${BASE}NLSAM${SEP}${PROGRAM}${SEP}${SUFFIX}-work'
+signature_type = 'OneToOne'
+
+[[stages]]
+label = 'dsi_studio_fib'
+completion_file_pattern = 'results/.*fib(.gz)?$'
+directory_pattern = '${BIGGUS_DISKUS}/${PREFIX}${SEP}${BASE}NLSAM${SEP}${PROGRAM}${SEP}${SUFFIX}-results'
+signature_type = 'OneToOne'
+
+[[stages]]
+label = 'dsi_studio_export'
+completion_file_pattern = 'results/.*nii.gz'
+directory_pattern = '${BIGGUS_DISKUS}/${PREFIX}${SEP}${BASE}NLSAM${SEP}${PROGRAM}${SEP}${SUFFIX}-results'
+signature_type = 'OneToMany'
+required_file_keywords = [ "qa" ,"iso", "fa", "ad", "rd" ]

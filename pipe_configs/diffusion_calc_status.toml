@@ -1,0 +1,37 @@
+label = 'diffusion_calc'
+
+[[stages]]
+label = 'co_reg'
+completion_file_pattern = 'results/co_reg.*headfile'
+directory_pattern = '${BIGGUS_DISKUS}/${PREFIX}${SEP}${BASE}${SEP}${PROGRAM}${SEP}${SUFFIX}-results'
+signature_type = 'ManyToOne'
+
+[[stages]]
+label = 'make_4d'
+#todo!(make this possible as some point)
+#completion_file_pattern = 'results/nii4D\$\{BASE\}.nii$'
+completion_file_pattern = 'results/nii4D_[^_]+nii$'
+directory_pattern = '${BIGGUS_DISKUS}/${PREFIX}${SEP}${BASE}${SEP}${PROGRAM}${SEP}${SUFFIX}-results'
+signature_type = 'ManyToOne'
+
+[[stages]]
+label = 'dsi_studio_source'
+completion_file_pattern = 'work/.*src(.gz)?$'
+directory_pattern = '${BIGGUS_DISKUS}/${PREFIX}${SEP}${BASE}${SEP}${PROGRAM}${SEP}${SUFFIX}-work'
+signature_type = 'OneToOne'
+#todo! deal with files which can be in either place (work/results)
+
+[[stages]]
+label = 'dsi_studio_fib'
+completion_file_pattern = 'results/.*fib(.gz)?$'
+directory_pattern = '${BIGGUS_DISKUS}/${PREFIX}${SEP}${BASE}${SEP}${PROGRAM}${SEP}${SUFFIX}-results'
+signature_type = 'OneToOne'
+#todo! support multiple fib outputs
+
+[[stages]]
+label = 'dsi_studio_export'
+completion_file_pattern = 'results/.*nii.gz'
+directory_pattern = '${BIGGUS_DISKUS}/${PREFIX}${SEP}${BASE}${SEP}${PROGRAM}${SEP}${SUFFIX}-results'
+signature_type = 'OneToMany'
+required_file_keywords = [ "qa" ,"iso", "fa", "ad", "rd" ]
+

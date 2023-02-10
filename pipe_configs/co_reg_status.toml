@@ -1,0 +1,20 @@
+label = "co_reg"
+
+[[stages]]
+label = "make_header"
+completion_file_pattern = "inputs/.*nhdr"
+directory_pattern = "${BIGGUS_DISKUS}/co_reg_${PARAM0}-inputs"
+signature_type = "ManyToMany"
+preferred_computer = ["civmcluster1"]
+
+[[stages]]
+label = "ants_registration"
+completion_file_pattern = "results/.*[Aa]ffine.(mat|txt)"
+directory_pattern = "${BIGGUS_DISKUS}/co_reg_${PARAM0}-results"
+signature_type = "ManyToMany"
+
+[[stages]]
+label = "apply_transform"
+completion_file_pattern = "work/Reg_.*nhdr"
+directory_pattern = "${BIGGUS_DISKUS}/co_reg_${PARAM0}-work"
+signature_type = "ManyToMany"
